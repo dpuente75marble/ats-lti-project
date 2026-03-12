@@ -2,11 +2,21 @@ const express = require("express");
 const cors = require("cors");
 const db = require("./db");
 
+const SqliteTaskRepository = require("./features/tasks/infrastructure/repositories/SqliteTaskRepository");
+const GetTasks = require("./features/tasks/application/use-cases/GetTasks");
+const TaskController = require("./features/tasks/presentation/http/taskController");
+const createTaskRoutes = require("./features/tasks/presentation/http/taskRoutes");
+
 const app = express();
 const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
+
+const taskRepository = new SqliteTaskRepository(db);
+const getTasks = new GetTasks(taskRepository);
+const taskController = new TaskController(getTasks);
+const taskRoutes = createTaskRoutes(taskController);
 
 app.get("/", (req, res) => {
   res.json({
@@ -14,15 +24,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/api/tasks", (req, res) => {
-  db.all("SELECT * FROM tasks", [], (err, rows) => {
-    if (err) {
-      return res.status(500).json({ error: "Error al obtener las tareas" });
-    }
-
-    res.json(rows);
-  });
-});
+app.use("/api/tasks", taskRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor backend escuchando en http://localhost:${PORT}`);
