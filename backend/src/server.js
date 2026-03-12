@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const db = require("./db");
+const db = require("./shared/infrastructure/database/sqliteClient");
 
 const SqliteTaskRepository = require("./features/tasks/infrastructure/repositories/SqliteTaskRepository");
 const GetTasks = require("./features/tasks/application/use-cases/GetTasks");
