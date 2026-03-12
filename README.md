@@ -55,12 +55,6 @@ Esto permite que el proyecto pueda crecer sin generar acoplamiento entre compone
 
 ---
 
-## Diagrama de arquitectura
-
-![Architecture Diagram](docs/images/architecture-diagram.png)
-
----
-
 # Estructura del proyecto
 
 ```
@@ -146,6 +140,12 @@ B -->|SQL Query| C[SQLite Database]
 A -->|Fetch /api/tasks| B
 B -->|JSON Response| A
 ```
+
+---
+
+## Diagrama de arquitectura
+
+![Architecture Diagram](docs/images/architecture-diagram.png)
 
 ---
 
