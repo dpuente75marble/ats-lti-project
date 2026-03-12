@@ -242,6 +242,28 @@ http://localhost:5173
 
 ---
 
+## Ejecutar frontend y backend al mismo tiempo
+
+Para facilitar el desarrollo, el proyecto incluye un script que permite arrancar **frontend y backend simultáneamente** desde la raíz del proyecto.
+
+Esto mejora la experiencia de desarrollo y evita tener que abrir dos terminales.
+
+Ejecutar desde la raíz del proyecto:
+
+```
+npm install
+npm run dev
+```
+
+Este comando inicia:
+
+- Backend en `http://localhost:3001`
+- Frontend en `http://localhost:5173`
+
+Esto se consigue utilizando el paquete **concurrently**, que permite ejecutar múltiples procesos en paralelo desde un único comando.
+
+---
+
 # Estado del proyecto
 
 ✔ Frontend funcionando
