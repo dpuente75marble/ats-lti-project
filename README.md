@@ -55,6 +55,12 @@ Esto permite que el proyecto pueda crecer sin generar acoplamiento entre compone
 
 ---
 
+## Diagrama de arquitectura
+
+![Architecture Diagram](docs/images/architecture-diagram.png)
+
+---
+
 # Estructura del proyecto
 
 ```
@@ -208,6 +214,22 @@ Esto permite escalar el sistema sin acoplar frontend y backend.
 
 ---
 
+## Requisitos previos
+
+Antes de ejecutar el proyecto es necesario tener instalado:
+
+- Node.js (versión 18 o superior)
+- npm
+- Git
+
+Puedes comprobar tu versión de Node con:
+
+```
+node -v
+```
+
+---
+
 # Cómo ejecutar el proyecto
 
 ## Backend
@@ -261,6 +283,41 @@ Este comando inicia:
 - Frontend en `http://localhost:5173`
 
 Esto se consigue utilizando el paquete **concurrently**, que permite ejecutar múltiples procesos en paralelo desde un único comando.
+
+---
+
+## Configuración
+
+La configuración de la API se encuentra centralizada en:
+
+```
+frontend/src/shared/config/index.js
+```
+
+Esto permite modificar fácilmente la URL del backend sin cambiar el resto del código.
+
+Ejemplo:
+
+```
+export const config = {
+  api: {
+    baseUrl: 'http://localhost:3001'
+  }
+}
+```
+
+---
+
+## Uso de GitHub Copilot
+
+Durante el desarrollo del proyecto se utilizó **GitHub Copilot** como asistente de programación para:
+
+- generación de estructura inicial del proyecto
+- creación de endpoints backend
+- generación de componentes React
+- refactorización de arquitectura
+
+Copilot se utilizó como herramienta de apoyo para acelerar el desarrollo, manteniendo siempre la revisión manual del código generado.
 
 ---
 
