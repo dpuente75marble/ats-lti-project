@@ -33,7 +33,7 @@ db.serialize(() => {
 
       stmt.run("Configurar frontend con React", "done");
       stmt.run("Crear backend con Express", "done");
-      stmt.run("Conectar base de datos SQLite", "in progress");
+      stmt.run("Conectar base de datos SQLite", "in_progress");
 
       stmt.finalize();
 
