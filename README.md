@@ -1,5 +1,7 @@
 # ats-lti-project
 
+[React] [Vite] [Node.js] [Express] [SQLite] [Exercise]
+
 Proyecto base para el ejercicio ATS de LTI.
 
 ## Descripción
