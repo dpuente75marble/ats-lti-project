@@ -2,33 +2,38 @@
 
 [React] [Vite] [Node.js] [Express] [SQLite] [Exercise]
 
-Proyecto base para el ejercicio ATS de LTI.
+Proyecto base para el ejercicio **ATS de LTI**, construido desde cero utilizando **GitHub Copilot** y aplicando principios de arquitectura escalable.
 
-## Descripción
+---
+
+# Descripción
 
 Este proyecto implementa una aplicación **full-stack sencilla** que incluye frontend, backend y base de datos, demostrando la integración entre las distintas capas de una aplicación web.
 
 El sistema permite recuperar una lista de tareas desde una API backend y mostrarlas en el frontend.
 
+Aunque el ejercicio no requiere funcionalidad compleja, el proyecto se ha estructurado siguiendo **principios de arquitectura escalable**, de forma que pueda crecer fácilmente en futuras funcionalidades.
+
 ---
 
-## Stack tecnológico
+# Stack tecnológico
 
-**Frontend**
+## Frontend
 
 - React
 - Vite
+- JavaScript
 
-**Backend**
+## Backend
 
 - Node.js
 - Express
 
-**Base de datos**
+## Base de datos
 
 - SQLite
 
-**Herramientas**
+## Herramientas
 
 - Git
 - GitHub
@@ -37,7 +42,20 @@ El sistema permite recuperar una lista de tareas desde una API backend y mostrar
 
 ---
 
-## Estructura del proyecto
+# Arquitectura aplicada
+
+El proyecto está organizado siguiendo principios de:
+
+- Clean Architecture (simplificada)
+- Feature-Slice Architecture
+- Separación de capas
+- Domain Driven Design ligero
+
+Esto permite que el proyecto pueda crecer sin generar acoplamiento entre componentes.
+
+---
+
+# Estructura del proyecto
 
 ```
 ats-lti-project
@@ -46,8 +64,17 @@ ats-lti-project
 │   └── Aplicación React creada con Vite
 │
 ├── backend
-│   ├── server.js
-│   ├── db.js
+│   ├── src
+│   │   ├── features
+│   │   │   └── tasks
+│   │   │       ├── domain
+│   │   │       ├── application
+│   │   │       ├── infrastructure
+│   │   │       └── presentation
+│   │   │
+│   │   └── shared
+│   │       └── infrastructure
+│   │
 │   └── database
 │       └── ats-lti.db
 │
@@ -58,12 +85,12 @@ ats-lti-project
 
 ---
 
-## Funcionalidad actual
+# Funcionalidad actual
 
 La aplicación incluye:
 
 - Frontend desarrollado con **React + Vite**
-- Backend desarrollado con **Express**
+- Backend desarrollado con **Node.js + Express**
 - Base de datos **SQLite**
 - API REST básica
 - Integración completa **frontend ↔ backend**
@@ -78,9 +105,47 @@ El frontend consume esta API y muestra las tareas almacenadas en la base de dato
 
 ---
 
-## Problemas encontrados y soluciones
+# Flujo de arquitectura
 
-### 1. Error al abrir la base de datos SQLite
+El flujo de la aplicación sigue esta estructura:
+
+```
+UI (React)
+   ↓
+Hooks
+   ↓
+Use Cases
+   ↓
+API Client
+   ↓
+Backend (Express)
+   ↓
+Repository
+   ↓
+Database (SQLite)
+```
+
+Esto permite separar responsabilidades entre las distintas capas del sistema.
+
+---
+
+# Arquitectura del sistema
+
+```mermaid
+graph TD
+
+A[Frontend React + Vite] -->|HTTP Request| B[Backend Node.js + Express]
+B -->|SQL Query| C[SQLite Database]
+
+A -->|Fetch /api/tasks| B
+B -->|JSON Response| A
+```
+
+---
+
+# Problemas encontrados y soluciones
+
+## 1. Error al abrir la base de datos SQLite
 
 **Problema**
 
@@ -106,7 +171,7 @@ permitiendo que SQLite generara correctamente el archivo de base de datos.
 
 ---
 
-### 2. Conexión entre frontend y backend
+## 2. Conexión entre frontend y backend
 
 **Problema**
 
@@ -124,9 +189,28 @@ gestionando la respuesta con `useEffect` y `useState`.
 
 ---
 
-## Cómo ejecutar el proyecto
+## 3. Organización de la arquitectura del proyecto
 
-### Backend
+**Problema**
+
+Al crecer el proyecto era necesario organizar el código de forma mantenible.
+
+**Solución**
+
+Se reorganizó la estructura siguiendo **Feature Slice Architecture**, separando:
+
+- dominio
+- casos de uso
+- infraestructura
+- presentación
+
+Esto permite escalar el sistema sin acoplar frontend y backend.
+
+---
+
+# Cómo ejecutar el proyecto
+
+## Backend
 
 ```
 cd backend
@@ -142,7 +226,7 @@ http://localhost:3001
 
 ---
 
-### Frontend
+## Frontend
 
 ```
 cd frontend
@@ -158,24 +242,11 @@ http://localhost:5173
 
 ---
 
-## Arquitectura del sistema
-
-```mermaid
-graph TD
-
-A[Frontend React + Vite] -->|HTTP Request| B[Backend Node.js + Express]
-B -->|SQL Query| C[SQLite Database]
-
-A -->|Fetch /api/tasks| B
-B -->|JSON Response| A
-```
-
----
-
-## Estado del proyecto
+# Estado del proyecto
 
 ✔ Frontend funcionando
 ✔ Backend funcionando
 ✔ Base de datos SQLite conectada
 ✔ Integración completa entre frontend y backend
+✔ Arquitectura preparada para escalar
 ✔ Proyecto documentado y subido a GitHub
