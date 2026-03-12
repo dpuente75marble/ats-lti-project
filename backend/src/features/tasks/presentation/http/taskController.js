@@ -1,3 +1,5 @@
+const { tasksToResponse } = require("./mappers/taskResponseMapper");
+
 class TaskController {
   constructor(getTasks) {
     this.getTasks = getTasks;
@@ -6,7 +8,7 @@ class TaskController {
   getAll = async (req, res) => {
     try {
       const tasks = await this.getTasks.execute();
-      res.json(tasks);
+      res.json(tasksToResponse(tasks));
     } catch (error) {
       console.error("Error al obtener las tareas:", error.message);
       res.status(500).json({ error: "Error al obtener las tareas" });
