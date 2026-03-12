@@ -4,9 +4,9 @@ Proyecto base para el ejercicio ATS de LTI.
 
 ## Descripción
 
-Este proyecto implementa una base funcional con **frontend, backend y base de datos**, siguiendo una estructura simple y escalable para demostrar la integración completa de una aplicación web.
+Este proyecto implementa una aplicación **full-stack sencilla** que incluye frontend, backend y base de datos, demostrando la integración entre las distintas capas de una aplicación web.
 
-La aplicación muestra una lista de tareas obtenidas desde una API backend conectada a una base de datos SQLite.
+El sistema permite recuperar una lista de tareas desde una API backend y mostrarlas en el frontend.
 
 ---
 
@@ -38,17 +38,18 @@ La aplicación muestra una lista de tareas obtenidas desde una API backend conec
 ## Estructura del proyecto
 
 ```
-ats-lti-project/
+ats-lti-project
 │
-├── frontend/
-│   └── aplicación React creada con Vite
+├── frontend
+│   └── Aplicación React creada con Vite
 │
-├── backend/
+├── backend
 │   ├── server.js
 │   ├── db.js
-│   └── database/
+│   └── database
 │       └── ats-lti.db
 │
+├── ARCHITECTURE.md
 ├── README.md
 └── .gitignore
 ```
@@ -63,7 +64,7 @@ La aplicación incluye:
 - Backend desarrollado con **Express**
 - Base de datos **SQLite**
 - API REST básica
-- Integración completa frontend ↔ backend
+- Integración completa **frontend ↔ backend**
 
 Endpoint disponible:
 
@@ -99,7 +100,7 @@ Se creó manualmente la carpeta:
 backend/database
 ```
 
-y el backend pudo crear correctamente el archivo `ats-lti.db`.
+permitiendo que SQLite generara correctamente el archivo de base de datos.
 
 ---
 
@@ -117,13 +118,13 @@ Se implementó una llamada `fetch` desde React al endpoint:
 http://localhost:3001/api/tasks
 ```
 
-y se gestionó la respuesta utilizando `useEffect` y `useState`.
+gestionando la respuesta con `useEffect` y `useState`.
 
 ---
 
 ## Cómo ejecutar el proyecto
 
-### 1️⃣ Backend
+### Backend
 
 ```
 cd backend
@@ -131,7 +132,7 @@ npm install
 npm run dev
 ```
 
-El servidor se ejecutará en:
+Servidor disponible en:
 
 ```
 http://localhost:3001
@@ -139,7 +140,7 @@ http://localhost:3001
 
 ---
 
-### 2️⃣ Frontend
+### Frontend
 
 ```
 cd frontend
@@ -147,10 +148,24 @@ npm install
 npm run dev
 ```
 
-La aplicación estará disponible en:
+Aplicación disponible en:
 
 ```
 http://localhost:5173
+```
+
+---
+
+## Arquitectura del sistema
+
+```mermaid
+graph TD
+
+A[Frontend React + Vite] -->|HTTP Request| B[Backend Node.js + Express]
+B -->|SQL Query| C[SQLite Database]
+
+A -->|Fetch /api/tasks| B
+B -->|JSON Response| A
 ```
 
 ---
@@ -161,5 +176,4 @@ http://localhost:5173
 ✔ Backend funcionando
 ✔ Base de datos SQLite conectada
 ✔ Integración completa entre frontend y backend
-
-El proyecto ha sido subido a GitHub como parte del ejercicio solicitado.
+✔ Proyecto documentado y subido a GitHub
